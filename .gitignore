@@ -1,0 +1,24 @@
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+tfplan
+plan.txt
+crash.log
+bootstrap/terraform.tfvars
+# keep the lock files: they pin provider versions
+!.terraform.lock.hcl
+
+# Secrets, just in case
+.env
+*.pem
+
+# Site
+site/node_modules/
+site/dist/
+site/.astro/
+
+# OS / editor
+.DS_Store
+.vscode/

@@ -1,0 +1,9 @@
+# Copy to terraform.tfvars (git-ignored) and fill in.
+github_owner = "YOUR-GITHUB-USERNAME"
+github_repo  = "brand-site"
+region       = "us-east-1"
+project      = "brand-site"
+
+# Set to false if `aws iam list-open-id-connect-providers` already shows
+# token.actions.githubusercontent.com in this account.
+create_oidc_provider = true
