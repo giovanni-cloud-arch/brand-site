@@ -28,7 +28,10 @@ locals {
   account_id   = data.aws_caller_identity.current.account_id
   state_bucket = "${var.project}-tfstate-${local.account_id}"
   site_bucket  = "${var.project}-site-${local.account_id}" # must match infra/aws/s3.tf
-  repo         = "${var.github_owner}/${var.github_repo}"
+  # GitHub's OIDC subject for repositories created after 2026-07-15 embeds immutable IDs:
+  #   repo:<owner>@<owner_id>/<repo>@<repo_id>:ref:refs/heads/main
+  # Older repositories use repo:<owner>/<repo>:... . Set both IDs to get the new form.
+  repo = var.github_owner_id != "" && var.github_repo_id != "" ? "${var.github_owner}@${var.github_owner_id}/${var.github_repo}@${var.github_repo_id}" : "${var.github_owner}/${var.github_repo}"
   oidc_arn     = var.create_oidc_provider ? aws_iam_openid_connect_provider.github[0].arn : "arn:aws:iam::${local.account_id}:oidc-provider/token.actions.githubusercontent.com"
 }
 
