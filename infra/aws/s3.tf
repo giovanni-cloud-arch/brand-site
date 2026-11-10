@@ -52,7 +52,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "site" {
     status = "Enabled"
     filter {}
     noncurrent_version_expiration {
-      noncurrent_days = 30
+      noncurrent_days = 45
     }
     abort_incomplete_multipart_upload {
       days_after_initiation = 7
