@@ -79,7 +79,7 @@ Only after step 5 above works:
 
 - Change content: edit `site/`, open a PR (it builds and checks), merge (it deploys and invalidates the cache).
 - Change infrastructure: edit `infra/aws/`, open a PR (fmt, validate, tflint, Checkov, plan posted as a comment), merge. On `main` a plan job saves the plan to the private state bucket (`plans/`) and shows it in the run summary; read it, then approve the `production` environment and the apply job runs that exact plan.
-- Roll back: revert the commit on `main`. S3 versioning keeps old objects for 30 days.
+- Roll back: revert the commit on `main`. S3 versioning keeps old objects for 45 days.
 
 ## Security notes
 
